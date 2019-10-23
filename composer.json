@@ -1,0 +1,27 @@
+{
+  "name": "mix/redis-subscriber",
+  "description": "Mix Redis Subscriber http://www.mixphp.cn",
+  "type": "framework",
+  "keywords": [
+    "framework",
+    "mix",
+    "swoole"
+  ],
+  "homepage": "http://www.mixphp.cn/",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "liu,jian",
+      "email": "coder.keda@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "mix/bean": "v2.1.0-RC"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mix\\Redis\\Subscriber\\": "src/"
+    }
+  }
+}
