@@ -52,9 +52,9 @@ while (true) {
 ```
 object(Mix\Redis\Subscriber\Message)#8 (2) {
   ["channel"]=>
-  string(2) "bb"
+  string(2) "foo"
   ["payload"]=>
-  string(4) "1111"
+  string(4) "test"
 }
 ```
 
