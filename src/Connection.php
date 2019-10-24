@@ -3,6 +3,7 @@
 namespace Mix\Redis\Subscriber;
 
 use Mix\Redis\Subscriber\Exception\ConnectException;
+use Mix\Redis\Subscriber\Exception\SendException;
 
 /**
  * Class Connection
@@ -61,11 +62,19 @@ class Connection
     /**
      * Send
      * @param string $data
-     * @return bool|int
+     * @return bool
      */
     public function send(string $data)
     {
-        return $this->client->send($data);
+        $len  = strlen($data);
+        $size = $this->client->send($data);
+        if ($size === false) {
+            throw new SendException($this->client->errMsg, $this->client->errCode);
+        }
+        if ($len !== $size) {
+            throw new SendException('The sending data is incomplete, it may be that the socket has been closed by the peer.');
+        }
+        return true;
     }
 
     /**

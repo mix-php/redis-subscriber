@@ -37,9 +37,16 @@ class Subscriber
     public $password = '';
 
     /**
+     * 命令调用器
      * @var CommandInvoker
      */
     protected $commandInvoker;
+
+    /**
+     * 是否已关闭
+     * @var bool
+     */
+    public $closed = false;
 
     /**
      * Subscriber constructor.
@@ -65,6 +72,7 @@ class Subscriber
         $result = $this->commandInvoker->invoke("subscribe " . join(' ', $channels), count($channels));
         foreach ($result as $value) {
             if ($value === false) {
+                $this->commandInvoker->interrupt();
                 throw new SubscribeException('Subscribe failed');
             }
         }
@@ -81,6 +89,7 @@ class Subscriber
         $result = $this->commandInvoker->invoke("unsubscribe " . join(' ', $channels), count($channels));
         foreach ($result as $value) {
             if ($value === false) {
+                $this->commandInvoker->interrupt();
                 throw new SubscribeException('Unsubscribe failed');
             }
         }
@@ -102,6 +111,7 @@ class Subscriber
      */
     public function close()
     {
+        $this->closed = true;
         $this->commandInvoker->interrupt();
         return true;
     }

@@ -107,7 +107,12 @@ class CommandInvoker
      */
     public function invoke(string $command, int $number)
     {
-        $this->connection->send($command . static::EOF);
+        try {
+            $this->connection->send($command . static::EOF);
+        } catch (\Throwable $e) {
+            $this->interrupt();
+            throw $e;
+        }
         $result = [];
         for ($i = 0; $i < $number; $i++) {
             $result[] = $this->resultChannel->pop();
