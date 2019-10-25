@@ -13,6 +13,13 @@ $scheduler->add(function () {
     ]);
     $sub->subscribe('foo', 'bar'); // 订阅失败将抛出异常
 
+    \Swoole\Timer::after(2000, function () use ($sub) {
+        var_dump('add subscribe');
+        $sub->subscribe('foo1', 'bar1');
+        var_dump('un subscribe');
+        $sub->unsubscribe('foo', 'bar');
+    });
+
     \Swoole\Timer::after(20000, function () use ($sub) {
         var_dump('close');
         $sub->close();
