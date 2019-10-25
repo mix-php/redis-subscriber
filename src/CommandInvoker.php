@@ -1,12 +1,12 @@
 <?php
 
-namespace Mix\Redis\Subscriber;
+namespace Mix\Redis\Subscribe;
 
 use Swoole\Coroutine\Channel;
 
 /**
  * Class CommandInvoker
- * @package Mix\Redis\Subscriber
+ * @package Mix\Redis\Subscribe
  */
 class CommandInvoker
 {

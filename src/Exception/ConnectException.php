@@ -1,10 +1,10 @@
 <?php
 
-namespace Mix\Redis\Subscriber\Exception;
+namespace Mix\Redis\Subscribe\Exception;
 
 /**
  * Class ConnectException
- * @package Mix\Redis\Subscriber\Exception
+ * @package Mix\Redis\Subscribe\Exception
  */
 class ConnectException extends \RuntimeException
 {

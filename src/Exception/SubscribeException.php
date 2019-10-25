@@ -1,10 +1,10 @@
 <?php
 
-namespace Mix\Redis\Subscriber\Exception;
+namespace Mix\Redis\Subscribe\Exception;
 
 /**
  * Class SubscribeException
- * @package Mix\Redis\Subscriber\Exception
+ * @package Mix\Redis\Subscribe\Exception
  */
 class SubscribeException extends \RuntimeException
 {

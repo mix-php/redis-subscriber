@@ -1,13 +1,13 @@
 <?php
 
-namespace Mix\Redis\Subscriber;
+namespace Mix\Redis\Subscribe;
 
 use Mix\Bean\BeanInjector;
-use Mix\Redis\Subscriber\Exception\SubscribeException;
+use Mix\Redis\Subscribe\Exception\SubscribeException;
 
 /**
  * Class Subscriber
- * @package Mix\Redis\Subscriber
+ * @package Mix\Redis\Subscribe
  */
 class Subscriber
 {

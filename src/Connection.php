@@ -1,13 +1,13 @@
 <?php
 
-namespace Mix\Redis\Subscriber;
+namespace Mix\Redis\Subscribe;
 
-use Mix\Redis\Subscriber\Exception\ConnectException;
-use Mix\Redis\Subscriber\Exception\SendException;
+use Mix\Redis\Subscribe\Exception\ConnectException;
+use Mix\Redis\Subscribe\Exception\SendException;
 
 /**
  * Class Connection
- * @package Mix\Redis\Subscriber
+ * @package Mix\Redis\Subscribe
  */
 class Connection
 {

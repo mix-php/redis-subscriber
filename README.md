@@ -1,4 +1,4 @@
-## Mix Redis Subscriber
+## Mix Redis Subscribe
 
 一个使用 Swoole Socket 直接连接 Redis 服务器，不依赖 phpredis 扩展的订阅器，该订阅器有如下优点：
 
@@ -16,7 +16,7 @@
 安装：
 
 ```
-composer require mix/redis-subscriber
+composer require mix/redis-subscribe
 ```
 
 代码：
@@ -25,7 +25,7 @@ composer require mix/redis-subscriber
 - 订阅失败会抛出异常 `SubscribeException`
 
 ```
-$sub = new \Mix\Redis\Subscriber\Subscriber([ // 连接失败将抛出异常
+$sub = new \Mix\Redis\Subscribe\Subscriber([ // 连接失败将抛出异常
     'host'     => '192.168.198.1',
     'port'     => 6379,
     'timeout'  => 5,
@@ -50,7 +50,7 @@ while (true) {
 接收到订阅消息：
 
 ```
-object(Mix\Redis\Subscriber\Message)#8 (2) {
+object(Mix\Redis\Subscribe\Message)#8 (2) {
   ["channel"]=>
   string(2) "foo"
   ["payload"]=>
