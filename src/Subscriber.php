@@ -55,11 +55,20 @@ class Subscriber
     public function __construct(array $config = [])
     {
         BeanInjector::inject($this, $config);
+    }
+
+    /**
+     * 连接
+     * @return bool
+     */
+    public function connect()
+    {
         $connection           = new Connection($this->host, $this->port, $this->timeout);
         $this->commandInvoker = new CommandInvoker($connection);
         if ('' != (string)$this->password) {
             $this->commandInvoker->invoke("auth {$this->password}", 1);
         }
+        return true;
     }
 
     /**
