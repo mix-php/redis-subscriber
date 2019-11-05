@@ -4,6 +4,7 @@ namespace Mix\Redis\Subscribe;
 
 use Mix\Bean\BeanInjector;
 use Mix\Redis\Subscribe\Exception\SubscribeException;
+use Mix\Redis\Subscribe\Exception\UnsubscribeException;
 
 /**
  * Class Subscriber
@@ -58,8 +59,7 @@ class Subscriber
     }
 
     /**
-     * 连接
-     * @return bool
+     * Connect
      */
     public function connect()
     {
@@ -68,13 +68,11 @@ class Subscriber
         if ('' != (string)$this->password) {
             $this->commandInvoker->invoke("auth {$this->password}", 1);
         }
-        return true;
     }
 
     /**
      * Subscribe
      * @param string ...$channels
-     * @return bool
      */
     public function subscribe(string ...$channels)
     {
@@ -85,13 +83,11 @@ class Subscriber
                 throw new SubscribeException('Subscribe failed');
             }
         }
-        return true;
     }
 
     /**
      * Unsubscribe
      * @param string ...$channels
-     * @return bool
      */
     public function unsubscribe(string ...$channels)
     {
@@ -99,10 +95,9 @@ class Subscriber
         foreach ($result as $value) {
             if ($value === false) {
                 $this->commandInvoker->interrupt();
-                throw new SubscribeException('Unsubscribe failed');
+                throw new UnsubscribeException('Unsubscribe failed');
             }
         }
-        return true;
     }
 
     /**
@@ -116,13 +111,11 @@ class Subscriber
 
     /**
      * Close
-     * @return bool
      */
     public function close()
     {
         $this->closed = true;
         $this->commandInvoker->interrupt();
-        return true;
     }
 
 }

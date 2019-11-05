@@ -2,9 +2,6 @@
 
 namespace Mix\Redis\Subscribe;
 
-use Mix\Redis\Subscribe\Exception\ConnectException;
-use Mix\Redis\Subscribe\Exception\SendException;
-
 /**
  * Class Connection
  * @package Mix\Redis\Subscribe
@@ -54,7 +51,7 @@ class Connection
             'package_eof'    => static::EOF,
         ]);
         if (!$client->connect($host, $port, $timeout)) {
-            throw new ConnectException(sprintf('Redis connect failed (host: %s, port: %s)', $host, $port));
+            throw new \Swoole\Exception(sprintf('Redis connect failed (host: %s, port: %s)', $host, $port));
         }
         $this->client = $client;
     }
@@ -69,10 +66,10 @@ class Connection
         $len  = strlen($data);
         $size = $this->client->send($data);
         if ($size === false) {
-            throw new SendException($this->client->errMsg, $this->client->errCode);
+            throw new \Swoole\Exception($this->client->errMsg, $this->client->errCode);
         }
         if ($len !== $size) {
-            throw new SendException('The sending data is incomplete, it may be that the socket has been closed by the peer.');
+            throw new \Swoole\Exception('The sending data is incomplete, it may be that the socket has been closed by the peer.');
         }
         return true;
     }
@@ -88,11 +85,17 @@ class Connection
 
     /**
      * Close
-     * @return bool
      */
     public function close()
     {
-        return $this->client->close();
+        if (!$this->client->close()) {
+            $errMsg  = $this->client->errMsg;
+            $errCode = $this->client->errCode;
+            if ($errMsg == '' && $errCode == 0) {
+                return;
+            }
+            throw new \Swoole\Exception($errMsg, $errCode);
+        }
     }
 
 }

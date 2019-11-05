@@ -3,9 +3,9 @@
 namespace Mix\Redis\Subscribe\Exception;
 
 /**
- * Class ConnectException
+ * Class UnsubscribeException
  * @package Mix\Redis\Subscribe\Exception
  */
-class ConnectException extends \RuntimeException
+class UnsubscribeException extends \RuntimeException
 {
 }
