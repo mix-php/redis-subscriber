@@ -62,9 +62,9 @@ object(Mix\Redis\Subscribe\Message)#8 (2) {
 
 |  方法  |  描述  |
 | --- | --- |
-|  subscribe(string ...$channels)  |  增加订阅  |
-|  unsubscribe(string ...$channels)  |  取消订阅  |
-|  channel() : Channel  |  获取消息通道  |
+|  subscribe(string ...$channels) : void  |  增加订阅  |
+|  unsubscribe(string ...$channels) : void  |  取消订阅  |
+|  channel() : Swoole\Coroutine\Channel  |  获取消息通道  |
 |  close() : bool  |  关闭订阅  |
 
 ## License
