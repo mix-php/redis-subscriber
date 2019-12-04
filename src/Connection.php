@@ -40,7 +40,7 @@ class Connection
      * @param int $port
      * @param float $timeout
      */
-    public function __construct(string $host, int $port, float $timeout = 0.0)
+    public function __construct(string $host, int $port, float $timeout = 5.0)
     {
         $this->host    = $host;
         $this->port    = $port;
