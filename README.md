@@ -31,6 +31,7 @@ $sub = new \Mix\Redis\Subscribe\Subscriber([ // 连接失败将抛出异常
     'timeout'  => 5,
     'password' => '',
 ]);
+$sub->connect();
 $sub->subscribe('foo', 'bar'); // 订阅失败将抛出异常
 
 $chan = $sub->channel();
