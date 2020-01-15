@@ -2,7 +2,6 @@
 
 namespace Mix\Redis\Subscribe;
 
-use Mix\Bean\BeanInjector;
 use Mix\Redis\Subscribe\Exception\SubscribeException;
 use Mix\Redis\Subscribe\Exception\UnsubscribeException;
 
@@ -51,17 +50,24 @@ class Subscriber
 
     /**
      * Subscriber constructor.
-     * @param array $config
+     * @param string $host
+     * @param int $port
+     * @param string $password
+     * @param float $timeout
      */
-    public function __construct(array $config = [])
+    public function __construct(string $host, int $port, string $password = '', float $timeout = 2.0)
     {
-        BeanInjector::inject($this, $config);
+        $this->host     = $host;
+        $this->port     = $port;
+        $this->password = $password;
+        $this->timeout  = $timeout;
+        $this->connect();
     }
 
     /**
      * Connect
      */
-    public function connect()
+    protected function connect()
     {
         $connection           = new Connection($this->host, $this->port, $this->timeout);
         $this->commandInvoker = new CommandInvoker($connection);

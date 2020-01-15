@@ -21,17 +21,10 @@ composer require mix/redis-subscribe
 
 代码：
 
-- 连接失败会抛出异常 `ConnectException`
-- 订阅失败会抛出异常 `SubscribeException`
+- 连接、订阅失败会抛出异常
 
 ```
-$sub = new \Mix\Redis\Subscribe\Subscriber([
-    'host'     => '192.168.198.1',
-    'port'     => 6379,
-    'timeout'  => 5,
-    'password' => '',
-]);
-$sub->connect(); // 连接失败将抛出异常
+$sub = new \Mix\Redis\Subscribe\Subscriber('127.0.0.1', 6379, '', 5); // 连接失败将抛出异常
 $sub->subscribe('foo', 'bar'); // 订阅失败将抛出异常
 
 $chan = $sub->channel();

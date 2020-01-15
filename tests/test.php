@@ -5,12 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $scheduler = new \Swoole\Coroutine\Scheduler;
 $scheduler->add(function () {
 
-    $sub = new \Mix\Redis\Subscribe\Subscriber([ // 连接失败将抛出异常
-        'host'     => '192.168.198.1',
-        'port'     => 6379,
-        'timeout'  => 5,
-        'password' => '',
-    ]);
+    $sub = new \Mix\Redis\Subscribe\Subscriber('127.0.0.1', 6379, '', 5);
     $sub->subscribe('foo', 'bar'); // 订阅失败将抛出异常
 
     \Swoole\Timer::after(2000, function () use ($sub) {
