@@ -1,0 +1,32 @@
+{
+  "name": "mix/redis-subscriber",
+  "description": "Redis native protocol Subscriber based on Swoole coroutine",
+  "type": "library",
+  "keywords": [
+    "mix",
+    "swoole",
+    "redis",
+    "subscribe",
+    "subscriber"
+  ],
+  "homepage": "https://openmix.org/mix-php",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "liu,jian",
+      "email": "coder.keda@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "ext-swoole": ">=4.4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mix\\Redis\\Subscriber\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0.0"
+  }
+}
